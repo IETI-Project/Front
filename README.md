@@ -1,1 +1,1 @@
-# Front
+# Events Front App
