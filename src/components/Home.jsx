@@ -9,6 +9,7 @@ import UserService from "../services/user.service";
     UserService.getPublicContent().then(
       (response) => {
         setContent(response.data);
+        console.log(response.data);
       },
       (error) => {
         const _content =
