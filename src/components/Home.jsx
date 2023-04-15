@@ -2,32 +2,48 @@ import React, { useState, useEffect } from "react";
 
 import UserService from "../services/user.service";
 
- const Home = () => {
-  const [content, setContent] = useState("");
+import {DEFAULT_EVENTS} from "../constants/constants.js";
+
+import {Grid} from "@mui/material";
+import {EventCard} from "./events/EventCard";
+
+const BoardUser = () => {
+  const [content, setContent] = useState([]);
 
   useEffect(() => {
-    UserService.getPublicContent().then(
+    /*
+    UserService.getUserBoard().then(
       (response) => {
-        setContent(response.data);
-        console.log(response.data);
+        //setContent(response.data);
+        setContent(DEFAULT_EVENTS);
       },
       (error) => {
         const _content =
-          (error.response && error.response.data) ||
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
           error.message ||
           error.toString();
 
-        setContent(_content);
+        //setContent(_content);
+        setContent(DEFAULT_EVENTS);
       }
     );
+    */
+   setContent(DEFAULT_EVENTS);
   }, []);
 
   return (
     <div className="container">
-      <header className="jumbotron">
-        <h3>{content}</h3>
-      </header>
+        <Grid container spacing={2}>
+            {content.map((event) => (
+                <Grid key={event.id} item xs={12} sm={6} md={4} lg={3}>
+                    <EventCard data={event}/>
+                </Grid>
+            ))}
+        </Grid>
     </div>
   );
 };
-export default Home;
+
+export default BoardUser;

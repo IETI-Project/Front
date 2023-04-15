@@ -4,6 +4,7 @@ import authHeader from "./auth-header";
 
 
 
+
 const API_URL = "http://localhost:8080/v1/events/";
 
 const getPublicContent = () => {
