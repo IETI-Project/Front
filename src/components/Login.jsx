@@ -72,7 +72,7 @@ const Login = () => {
     <div className="col-md-12">
       <div className="card card-container">
         <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+          src="src/images/simbolo.png"
           alt="profile-img"
           className="profile-img-card"
         />
@@ -101,11 +101,11 @@ const Login = () => {
               validations={[required]}
             />
           </div>
-
+          <br></br>
           <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading}>
+            <button className="btn" disabled={loading}>
               {loading && (
-                <span className="spinner-border spinner-border-sm"></span>
+                <span></span>
               )}
               <span>Login</span>
             </button>

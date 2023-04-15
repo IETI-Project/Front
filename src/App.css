@@ -22,11 +22,45 @@ label {
   }
   
   .profile-img-card {
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 10px;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 15px;
     display: block;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
-    border-radius: 50%;
+    border-radius: 15%;
+  }
+
+  .navbar{
+    background-color: #A60054;
+  }
+
+  .nav-link{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    padding-left: 0;
+    padding-top: 0.5rem;
+    color: white;
+    display: contents;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  }
+
+  .nav-link:hover{
+    color: black;
+
+  }
+
+  .btn{
+    background-color: white;
+    color: #C5307C;
+    border: 2px solid #A60054;
+    position: center;
+    margin-left: 100px;
+  }
+
+  .btn:hover{
+    background-color: #A60054; /* Green */
+    color: white;  
   }

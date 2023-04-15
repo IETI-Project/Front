@@ -11,6 +11,7 @@ import BoardUser from "./components/BoardUser";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 
+
 const App = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
 
@@ -25,14 +26,13 @@ const App = () => {
   const logOut = () => {
     AuthService.logout();
   };
-
   return (
     <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <Link to={"/"} className="navbar-brand">
-          EvenTu
+<nav class="navbar navbar-light">  
+      <Link to={"/"} className="navbar-brand">
+        <img src="src/images/simboloblanco.png" width="30" height="30"/>
         </Link>
-        <div className="navbar-nav mr-auto">
+        <div className="navbar-nav">
           <li className="nav-item">
             <Link to={"/home"} className="nav-link">
               Home
@@ -70,7 +70,7 @@ const App = () => {
             </li>
 
             <li className="nav-item">
-              <Link to={"/register"} className="nav-link">
+              <Link to={"/Register"} className="nav-link">
                 Sign Up
               </Link>
             </li>
@@ -85,6 +85,7 @@ const App = () => {
           <Route path="/login" element={<Login/>} />
           <Route path="/profile" element={<Profile/>} />
           <Route path="/user" element={<BoardUser/>} />
+          <Route path="/Register" element={<Register/>} />
         </Routes>
       </div>
     </div>
