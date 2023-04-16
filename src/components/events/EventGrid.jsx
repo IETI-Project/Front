@@ -2,29 +2,34 @@ import {useEffect, useState} from "react";
 import {Grid} from "@mui/material";
 import {EventCard} from "./EventCard.jsx";
 import {DEFAULT_EVENTS} from "../constants/constants.js";
+import EventService from "../../services/event-service.js";
 
 export function EventGrid(){
-
+    const [content, setContent] = useState([]);
     const [events,setEvents] = useState([])
 
     useEffect(() => {
-        fetchEvents()
-            .then(eventsData => setEvents(eventsData))
-            .catch(error => {
-                console.log("api not working"+error);
-                setEvents(DEFAULT_EVENTS);
-            });
+        EventService.getEvents().then(
+            (response) => {
+              setContent(response.data);
+            },
+            (error) => {
+              const _content =
+                (error.response &&
+                  error.response.data &&
+                  error.response.data.message) ||
+                error.message ||
+                error.toString();
+      
+              setContent(response.data);
+            }
+          );
     }, []);
-
-    const fetchEvents = async () => {
-        const response = await fetch('api/events');
-        return await response.json();
-    };
 
     return (
         <Grid container spacing={2}>
-            {events.map((event) => (
-                <Grid key={event.id} item xs={12} sm={6} md={4} lg={3}>
+            {content.map((event) => (
+                <Grid key={JSON.stringify(event.id)} item xs={6} sm={8} md={10} lg={12}>
                     <EventCard data={event}/>
                 </Grid>
             ))}

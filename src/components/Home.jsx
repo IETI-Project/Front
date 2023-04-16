@@ -1,48 +1,37 @@
 import React, { useState, useEffect } from "react";
 
-import UserService from "../services/user.service";
+import EventService from "../services/event-service";
 
 import {DEFAULT_EVENTS} from "../constants/constants.js";
 
 import {Grid} from "@mui/material";
 import {EventCard} from "./events/EventCard";
+import { EventGrid } from "./events/EventGrid";
+import { Flex, Button } from "@chakra-ui/react";
+import { AddEvent } from "./events/AddEvent";
 
 const BoardUser = () => {
   const [content, setContent] = useState([]);
+  const [showAdd, setShowAdd] = useState(false);
 
-  useEffect(() => {
-    /*
-    UserService.getUserBoard().then(
-      (response) => {
-        //setContent(response.data);
-        setContent(DEFAULT_EVENTS);
-      },
-      (error) => {
-        const _content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
 
-        //setContent(_content);
-        setContent(DEFAULT_EVENTS);
-      }
-    );
-    */
-   setContent(DEFAULT_EVENTS);
-  }, []);
+  const toggleAdd = () => {
+    let val = !showAdd
+
+    console.log(val);
+    setShowAdd(val);
+  }
 
   return (
-    <div className="container">
-        <Grid container spacing={2}>
-            {content.map((event) => (
-                <Grid key={event.id} item xs={12} sm={6} md={4} lg={3}>
-                    <EventCard data={event}/>
-                </Grid>
-            ))}
-        </Grid>
-    </div>
+    <Flex direction="column" className="container">
+        <Flex width = '100%' direction='column'>
+            <EventGrid />
+        </Flex>
+        <Button borderRadius="5px" onClick={toggleAdd} >+</Button>
+        <Flex>
+          {showAdd && (<AddEvent></AddEvent>)}
+        </Flex>
+    </Flex>
   );
 };
 

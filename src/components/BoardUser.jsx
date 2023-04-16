@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import UserService from "../services/user.service";
+import EventService from "../services/event-service";
 
 import {DEFAULT_EVENTS} from "../constants/constants.js";
 
@@ -10,26 +10,27 @@ import {EventCard} from "./events/EventCard";
 const BoardUser = () => {
   const [content, setContent] = useState([]);
 
-  useEffect(() => {
-    /*
-    UserService.getUserBoard().then(
-      (response) => {
-        //setContent(response.data);
-        setContent(DEFAULT_EVENTS);
-      },
-      (error) => {
-        const _content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
 
-        //setContent(_content);
-        setContent(DEFAULT_EVENTS);
-      }
-    );
-    */
+  useEffect(() => {
+    
+    // EventService.getUserBoard().then(
+    //   (response) => {
+    //     //setContent(response.data);
+    //     setContent(DEFAULT_EVENTS);
+    //   },
+    //   (error) => {
+    //     const _content =
+    //       (error.response &&
+    //         error.response.data &&
+    //         error.response.data.message) ||
+    //       error.message ||
+    //       error.toString();
+
+    //     //setContent(_content);
+    //     setContent(DEFAULT_EVENTS);
+    //   }
+    // );
+    
     setContent(DEFAULT_EVENTS);
   }, []);
   console.log(content);

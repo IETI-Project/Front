@@ -28,7 +28,7 @@ const App = () => {
   };
   return (
     <div>
-<nav class="navbar navbar-light">  
+<nav className="navbar navbar-light">  
       <Link to={"/"} className="navbar-brand">
         <img src="src/images/simboloblanco.png" width="30" height="30"/>
         </Link>
@@ -77,7 +77,6 @@ const App = () => {
           </div>
         )}
       </nav>
-
       <div className="container mt-3">
         <Routes>
           <Route path="/" element={<Home/>} />
@@ -86,6 +85,7 @@ const App = () => {
           <Route path="/profile" element={<Profile/>} />
           <Route path="/user" element={<BoardUser/>} />
           <Route path="/Register" element={<Register/>} />
+          {/* <Route path="/event/:id" element={<EventDetail/>} /> */}
         </Routes>
       </div>
     </div>
