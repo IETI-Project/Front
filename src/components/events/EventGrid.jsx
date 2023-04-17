@@ -29,7 +29,7 @@ export function EventGrid(){
     return (
         <Grid container spacing={2}>
             {content.map((event) => (
-                <Grid key={JSON.stringify(event.id)} item xs={6} sm={8} md={10} lg={12}>
+                <Grid key={JSON.stringify(event.id)} item xs={12} sm={12} md={6} lg={6}>
                     <EventCard data={event}/>
                 </Grid>
             ))}

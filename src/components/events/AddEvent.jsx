@@ -1,6 +1,6 @@
 import {useState} from "react";
 import EventService from "../../services/event-service";
-import { Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody } from "@chakra-ui/react";
+import { Button, Flex, Modal, ModalOverlay, ModalContent, Input, Box, FormControl, FormLabel } from "@chakra-ui/react";
 
 
 export function AddEvent(){
@@ -28,8 +28,7 @@ export function AddEvent(){
         locality: undefined,
     });
 
-    const onSumbit = (data) => {
-        data.preventDefault();
+    const onSumbit = () => {
         let newEvent = {
             "name": name,
             "type": type,
@@ -135,102 +134,83 @@ export function AddEvent(){
         setCapaci(val);
     }
 
-    
-
     const isValid = Object.keys(validateForm).every(key => validateForm[key] == "");
+    
+    const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-    return(
-        <div>
-            <button onClick={() => setIsOpen(true)}>Abrir pop-up</button>
-            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} backgroundColor="#f8f8f8">
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>Crear evento</ModalHeader>
-                    <ModalBody>
-                    <form onSubmit={onSumbit}>
-                        <div>
-                            <label>
-                                Nombre del evento:
-                                <input value={name} type="text" placeholder="Nombre del evento" onChange={handleChangeName}/>
-                            </label>
-                            {validateForm.name && (<span className="error">{validateForm.name}</span>)}
-                        </div>
-                        <div>
-                            <label>
-                                Tipo de evento:
-                                <input value={type} type="text" placeholder="Tipo de evento(ej:Concierto, exposicion, etc)" onChange={handleChangeType}/>
-                            </label>
-                            {validateForm.type && (<span className="error">{validateForm.type}</span>)}
-                        </div>
-                        <div>
-                            <label>
-                                Descripción del evento:
-                                <input onChange={handleChangeDesc} value={desc} type="text" placeholder="Descripcion del evento"/>
-                            </label>
-                            {validateForm.desc && (<span className="error">{validateForm.desc}</span>)}
-                        </div>
-                        <div>
-                            <label>
-                                Ubicación del evento:
-                                <input onChange={handleChangeLocat} value={locat} type="text" placeholder="Ubicación del evento"/>
-                            </label>
-                            {validateForm.locat && (<span className="error">{validateForm.locat}</span>)}
-                        </div>
-                        <div>
-                            <label>
-                                Fecha del evento:
-                                <input onChange={handleChangeDate} value={date} type="text" placeholder="Fecha del evento (dd/mm/yyy HH:HH)"/>
-                            </label>
-                            {validateForm.date && (<span className="error">{validateForm.date}</span>)}
-                        </div>
-                        <div>
-                            <label>
-                                Nombre del organizador del evento:
-                                <input onChange={handleChangeHost} value={host} type="text" placeholder="Nombre del organizador del evento"/>
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                Aforo del evento:
-                                <input onChange={handleChangeCapaci} value={capaci} type="text" placeholder="Aforo del evento"/>
-                            </label>
-                            {validateForm.capaci && (<span className="error">{validateForm.capaci}</span>)}
-                        </div>
-                        <div>
-                            <label>
-                                Precio de entrada al evento:
-                                <input onChange={handleChangePrice} value={price} type="text" placeholder="Precio de entrada al evento"/>
-                            </label>
-                            {validateForm.price && (<span className="error">{validateForm.price}</span>)}
-                        </div>
-                        <div>
-                            <label>
-                                Localidad del evento:
-                                <input onChange={handleChangeLocality} value={locality} type="text" placeholder="Localidad del evento"/>
-                            </label>
-                            {validateForm.locality && (<span className="error">{validateForm.locality}</span>)}
-                        </div>
-                        <div>
-                            <label>
-                                Foto del evento:
-                                <input onChange={handleChangePhoto} value={photo} type="text" placeholder="Foto del evento"/>
-                            </label>
-                        </div>
-                        <button disabled={!isValid}>Crear evento</button>
-                        {stateCreate && (<span className="error">{stateCreate}</span>)}
-                    </form>
-                    </ModalBody>
-                    <ModalFooter>
-                    <Button colorScheme="blue" mr={3} onClick={() => setIsOpen(false)}>
-                        Cerrar
-                    </Button>
-                    <Button variant="ghost">Guardar</Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
-            
-        </div>
+    const onTooglePopover = () => {
+        console.log(isPopoverOpen)
+        setIsPopoverOpen(!isPopoverOpen);
+      }
+  
+    return (
+        <Flex>
+            {!isPopoverOpen && (
+                <Flex position="sticky" width='100%'  justifyItems='center'>
+                    <Button position="absolute" right="0%" onClick={onTooglePopover}>Crear nuevo evento</Button>
+                </Flex>
+            )}
+                <Modal isOpen={isPopoverOpen} onClose={onTooglePopover}>
+                    <ModalOverlay />
+                    <ModalContent bgColor="rgba(58, 80, 96, 0.98)" h='80vh' w='80vw' margin='auto' borderRadius="50px" marginTop='5%' overflow='auto'>
+                        <Flex marginLeft='5%' width='95%'>
+                            <Box width="100%">
+                                <FormControl direction = "row">
+                                    <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Nombre del evento:</FormLabel>
+                                    <Input width="90%" value={name} type="text" placeholder="Nombre del evento" onChange={handleChangeName}/>
+                                    {validateForm.name && (<span style={{color: '#ffc344'}}>{validateForm.name}</span>)}
+                                </FormControl>
+                                <FormControl>
+                                    <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Tipo de evento:</FormLabel>
+                                    <Input width="90%" value={type} type="text" placeholder="Tipo de evento(ej:Concierto, exposicion, etc)" onChange={handleChangeType}/>
+                                    {validateForm.type && (<span className="error">{validateForm.type}</span>)}
+                                </FormControl>
+                                <FormControl>
+                                    <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Descripción del evento:</FormLabel>
+                                    <Input width="90%" onChange={handleChangeDesc} value={desc} type="text" placeholder="Descripcion del evento"/>
+                                    {validateForm.desc && (<span className="error">{validateForm.desc}</span>)}
+                                </FormControl>
+                                <FormControl>
+                                    <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Ubicación del evento:</FormLabel>
+                                    <Input width="90%" onChange={handleChangeLocat} value={locat} type="text" placeholder="Ubicación del evento"/>
+                                    {validateForm.locat && (<span className="error">{validateForm.locat}</span>)}
+                                </FormControl>
+                                <FormControl>
+                                    <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Fecha del evento:</FormLabel>
+                                    <Input width="90%" onChange={handleChangeDate} value={date} type="text" placeholder="Fecha del evento (dd/mm/yyy HH:HH)"/>
+                                    {validateForm.date && (<span className="error">{validateForm.date}</span>)}
+                                </FormControl>
+                                <FormControl>
+                                    <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Nombre del organizador del evento:</FormLabel>
+                                    <Input width="90%" onChange={handleChangeHost} value={host} type="text" placeholder="Nombre del organizador del evento"/>
+                                </FormControl>
+                                <FormControl>
+                                    <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Aforo del evento:</FormLabel>
+                                    <Input width="90%" onChange={handleChangeCapaci} value={capaci} type="text" placeholder="Aforo del evento"/>
+                                    {validateForm.capaci && (<span className="error">{validateForm.capaci}</span>)}
+                                </FormControl>
+                                <FormControl>
+                                    <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Precio de entrada al evento:</FormLabel>
+                                    <Input width="90%" onChange={handleChangePrice} value={price} type="text" placeholder="Precio de entrada al evento"/>
+                                    {validateForm.price && (<span className="error">{validateForm.price}</span>)}
+                                </FormControl>
+                                <FormControl>
+                                    <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Localidad del evento:</FormLabel>
+                                    <Input width="90%" onChange={handleChangeLocality} value={locality} type="text" placeholder="Localidad del evento"/>
+                                    {validateForm.locality && (<span className="error">{validateForm.locality}</span>)}
+                                </FormControl>
+                                <FormControl>
+                                    <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Foto del evento:</FormLabel>
+                                    <Input width="90%" onChange={handleChangePhoto} value={photo} type="text" placeholder="Foto del evento"/>
+                                </FormControl>
+                                <Flex p="30px" width='100%' justifyContent='center'>
+                                    <button disabled={!isValid} onClick={onSumbit}>Crear evento</button>
+                                    {stateCreate && (<span className="error">{stateCreate}</span>)}
+                                </Flex>
+                            </Box>
+                        </Flex>
+                    </ModalContent>
+                </Modal>
+        </Flex>
     )
-
-
 }

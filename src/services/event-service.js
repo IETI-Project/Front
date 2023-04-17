@@ -17,11 +17,20 @@ const postEvent = (data) => {
   return axios.post(API_URL + "addEvent", data);
 };
 
+const getEventByName = (data) =>{
+  return axios.get(API_URL+ "name/" +data);
+}
+
+const deleteEvent = (data) => {
+  return axios.delete(API_URL + data)
+}
 
 
 const EventService = {
   getEvents,
   postEvent,
+  getEventByName,
+  deleteEvent
 };
 
 export default EventService;

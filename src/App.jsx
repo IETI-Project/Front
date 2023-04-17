@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import "./styles/App.css";
+
 
 import AuthService from "./services/auth-service";
 
@@ -10,6 +11,7 @@ import Register from "./components/Register";
 import BoardUser from "./components/BoardUser";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
+import {EventDetail} from "./components/events/EventDetail";
 
 
 const App = () => {
@@ -77,7 +79,7 @@ const App = () => {
           </div>
         )}
       </nav>
-      <div className="container mt-3">
+      <div>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/home" element={<Home/>} />
@@ -85,7 +87,7 @@ const App = () => {
           <Route path="/profile" element={<Profile/>} />
           <Route path="/user" element={<BoardUser/>} />
           <Route path="/Register" element={<Register/>} />
-          {/* <Route path="/event/:id" element={<EventDetail/>} /> */}
+          <Route path="/event/:name" element={<EventDetail/>} />
         </Routes>
       </div>
     </div>

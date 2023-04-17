@@ -1,0 +1,8 @@
+.Box {
+    scrollbar-width: none; /* oculta el scrollbar */
+    -ms-overflow-style: none; /* para IE y Edge */
+  }
+  
+  .Box::-webkit-scrollbar {
+    display: none; /* para Chrome, Safari y Opera */
+  }

@@ -27,9 +27,8 @@ const BoardUser = () => {
         <Flex width = '100%' direction='column'>
             <EventGrid />
         </Flex>
-        <Button borderRadius="5px" onClick={toggleAdd} >+</Button>
         <Flex>
-          {showAdd && (<AddEvent></AddEvent>)}
+          <AddEvent></AddEvent>
         </Flex>
     </Flex>
   );

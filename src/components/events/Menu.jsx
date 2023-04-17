@@ -1,6 +1,7 @@
 import {Link,useNavigate} from "react-router-dom";
 import {Button, Input} from "@chakra-ui/react";
 import {useState} from "react";
+
 export function Menu(){
     const [isActive,setActive] = useState(false)
     const [searchId,setSearchId] = useState()

@@ -2,10 +2,13 @@ import {useState} from "react";
 import React from "react";
 import { Flex, Card, Box, Text, Image } from "@chakra-ui/react";
 import {Link} from "react-router-dom";
+import { ExternalLinkIcon } from '@chakra-ui/icons'
+import '../../styles/EventCard.css'
 
 export function EventCard(props){
     const [event,setEvent] = useState(props.data)
-    console.log(event)
+    // var hash = require('object-hash')
+    // console.log(event.id)
     // style={{ border: "1px solid gray" }}
 
     return (
@@ -21,7 +24,7 @@ export function EventCard(props){
                     >
                         <Image src={event.photoURL} alt={event.name} maxW="100%" h = '100%' borderLeftRadius = '50px' />
                     </Box>
-                    <Box p="4" overflow='auto' maxH='20vh'>
+                    <Box className = 'Box' w= '50%' p="4" overflow='auto' maxH='20vh'>
                         <Text fontWeight="bold" fontSize="xl" mb="2">
                             {event.name}
                         </Text>
@@ -43,23 +46,10 @@ export function EventCard(props){
                         <Text fontSize="md" color="gray.500" mb="2">
                             Host: {event.host}
                         </Text>
-                        <Link></Link>
                     </Box>
+                        <Link  style={{ color: '#a60054' }} to={"/event/"+event.name} >Detalles<ExternalLinkIcon mx='2px' /></Link>
                 </Flex>
             </Card>
         </Flex>
   );
-
-        // <Card direction={{ base: 'column', sm: 'row' }}>
-        //     <li>{event.name}</li>
-        //     <li>{event.type}</li>
-        //     <li>{event.description}</li>
-        //     <li>{event.date}</li>
-        //     <li>{event.priceRange}</li>
-        //     <li>
-        //         <Link to={"event/"+event.id}>Ir al evento</Link>
-        //     </li>
-        // </Card>
-    
-
 }
