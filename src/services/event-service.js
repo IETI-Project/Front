@@ -22,7 +22,7 @@ const getEventByName = (data) =>{
 }
 
 const deleteEvent = (data) => {
-  return axios.delete(API_URL + data)
+  return axios.delete(API_URL + data.name);
 }
 
 

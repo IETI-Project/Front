@@ -1,4 +1,4 @@
-import { Flex, Heading, Box, Spacer,ListItem, UnorderedList, Text, Button, ListIcon} from "@chakra-ui/react";
+import { Flex, Heading, Box, Spacer,ListItem, UnorderedList, Text, Button, ListIcon, Image} from "@chakra-ui/react";
 import React from "react";
 import EventService from "../../services/event-service.js";
 import { useParams } from "react-router-dom";
@@ -26,13 +26,15 @@ export function EventDetail(){
               
         }
       );
-      
+      window.location.href = "../../home"
     }
 
     useEffect(() => {
         EventService.getEventByName(name).then(
             (response) => {
               var ph = response.data.photoURL;
+              setPhoto(ph);
+              console.log(ph);
               setEvent(response.data);
             },
             (error) => {
@@ -52,7 +54,8 @@ export function EventDetail(){
 
     return (
       <Flex direction="column" width="100%" >
-        <Flex margin mb="20px" backgroundColor="#3a5060" backgroundRepeat="no-repeat" bgPosition="center"  width="100%" height="50vh" bgGradient={"url(" + {event}.event.photoURL + ")"}>
+        <Flex mb="20px" backgroundColor="#3a5060" width="100%" height="50vh" justifyContent='center'>
+        <Image src={event.photoURL != undefined ? event.photoURL: '../src/images/NoEvent.png'} alt={event.name} maxW="100%" h = '100%'/>
         </Flex>
         <Flex pl="50px" direction="row">
           <Flex alignContent="center" direction="column">

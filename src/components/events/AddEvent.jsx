@@ -54,6 +54,7 @@ export function AddEvent(){
                 console.log(error.toString());
                 setStateCreate("No se pudo crear el evento")
             });
+            window.location.reload();
         // console.log(JSON.stringify(newEvent));
     };
 
@@ -144,10 +145,10 @@ export function AddEvent(){
       }
   
     return (
-        <Flex>
+        <Flex width='100%'>
             {!isPopoverOpen && (
-                <Flex position="sticky" width='100%'  justifyItems='center'>
-                    <Button position="absolute" right="0%" onClick={onTooglePopover}>Crear nuevo evento</Button>
+                <Flex position="sticky" width='100%' justifyItems='center'>
+                    <Button margin='auto' onClick={onTooglePopover} marginTop='1%' bgColor='#a60054' color='wheat' padding='0.8%' borderRadius='15px' transition = '0.3s' _hover={{backgroundColor : '#59002d', transition : '0.3s', padding : '1%'}}>Crear nuevo evento</Button>
                 </Flex>
             )}
                 <Modal isOpen={isPopoverOpen} onClose={onTooglePopover}>
@@ -163,22 +164,22 @@ export function AddEvent(){
                                 <FormControl>
                                     <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Tipo de evento:</FormLabel>
                                     <Input width="90%" value={type} type="text" placeholder="Tipo de evento(ej:Concierto, exposicion, etc)" onChange={handleChangeType}/>
-                                    {validateForm.type && (<span className="error">{validateForm.type}</span>)}
+                                    {validateForm.type && (<span style={{color: '#ffc344'}} className="error">{validateForm.type}</span>)}
                                 </FormControl>
                                 <FormControl>
                                     <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Descripción del evento:</FormLabel>
                                     <Input width="90%" onChange={handleChangeDesc} value={desc} type="text" placeholder="Descripcion del evento"/>
-                                    {validateForm.desc && (<span className="error">{validateForm.desc}</span>)}
+                                    {validateForm.desc && (<span style={{color: '#ffc344'}} className="error">{validateForm.desc}</span>)}
                                 </FormControl>
                                 <FormControl>
                                     <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Ubicación del evento:</FormLabel>
                                     <Input width="90%" onChange={handleChangeLocat} value={locat} type="text" placeholder="Ubicación del evento"/>
-                                    {validateForm.locat && (<span className="error">{validateForm.locat}</span>)}
+                                    {validateForm.locat && (<span style={{color: '#ffc344'}} className="error">{validateForm.locat}</span>)}
                                 </FormControl>
                                 <FormControl>
                                     <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Fecha del evento:</FormLabel>
                                     <Input width="90%" onChange={handleChangeDate} value={date} type="text" placeholder="Fecha del evento (dd/mm/yyy HH:HH)"/>
-                                    {validateForm.date && (<span className="error">{validateForm.date}</span>)}
+                                    {validateForm.date && (<span style={{color: '#ffc344'}} className="error">{validateForm.date}</span>)}
                                 </FormControl>
                                 <FormControl>
                                     <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Nombre del organizador del evento:</FormLabel>
@@ -187,17 +188,17 @@ export function AddEvent(){
                                 <FormControl>
                                     <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Aforo del evento:</FormLabel>
                                     <Input width="90%" onChange={handleChangeCapaci} value={capaci} type="text" placeholder="Aforo del evento"/>
-                                    {validateForm.capaci && (<span className="error">{validateForm.capaci}</span>)}
+                                    {validateForm.capaci && (<span style={{color: '#ffc344'}} className="error">{validateForm.capaci}</span>)}
                                 </FormControl>
                                 <FormControl>
                                     <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Precio de entrada al evento:</FormLabel>
                                     <Input width="90%" onChange={handleChangePrice} value={price} type="text" placeholder="Precio de entrada al evento"/>
-                                    {validateForm.price && (<span className="error">{validateForm.price}</span>)}
+                                    {validateForm.price && (<span style={{color: '#ffc344'}} className="error">{validateForm.price}</span>)}
                                 </FormControl>
                                 <FormControl>
                                     <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Localidad del evento:</FormLabel>
                                     <Input width="90%" onChange={handleChangeLocality} value={locality} type="text" placeholder="Localidad del evento"/>
-                                    {validateForm.locality && (<span className="error">{validateForm.locality}</span>)}
+                                    {validateForm.locality && (<span style={{color: '#ffc344'}} className="error">{validateForm.locality}</span>)}
                                 </FormControl>
                                 <FormControl>
                                     <FormLabel bgColor="rgb(58, 80, 96)" color="white" width="fit-content">Foto del evento:</FormLabel>
@@ -205,7 +206,7 @@ export function AddEvent(){
                                 </FormControl>
                                 <Flex p="30px" width='100%' justifyContent='center'>
                                     <button disabled={!isValid} onClick={onSumbit}>Crear evento</button>
-                                    {stateCreate && (<span className="error">{stateCreate}</span>)}
+                                    {stateCreate && (<span style={{color: '#ffc344'}} className="error">{stateCreate}</span>)}
                                 </Flex>
                             </Box>
                         </Flex>

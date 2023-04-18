@@ -24,6 +24,7 @@ export function EventGrid(){
               setContent(response.data);
             }
           );
+          
     }, []);
 
     return (

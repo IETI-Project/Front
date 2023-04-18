@@ -22,7 +22,7 @@ export function EventCard(props){
                     borderRightStyle="solid"
                     borderColor="gray.200"
                     >
-                        <Image src={event.photoURL} alt={event.name} maxW="100%" h = '100%' borderLeftRadius = '50px' />
+                        <Image src={event.photoURL != undefined ? event.photoURL: 'src/images/NoEvent.png'} alt={event.name} maxW="100%" h = '100%' borderLeftRadius = '50px' />
                     </Box>
                     <Box className = 'Box' w= '50%' p="4" overflow='auto' maxH='20vh'>
                         <Text fontWeight="bold" fontSize="xl" mb="2">
