@@ -39,7 +39,7 @@ export function AddEvent(){
             "capacitity": capaci ,
             "price": price,
             "locality": locality,
-            "photoURl": photo
+            "photoURL": photo
         }
         EventService.postEvent(newEvent).then(
             (response) => {
